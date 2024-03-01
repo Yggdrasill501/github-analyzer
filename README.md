@@ -1,15 +1,5 @@
-# github-analyzer
+# Github Analyzer
+How many lines of code did you wrote ?🤔
 
-To install dependencies:
+Simple typescrpit app with bun, to analyse any GitHub profile of how many line of code did you write in what programing language.
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.1. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
