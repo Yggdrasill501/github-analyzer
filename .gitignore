@@ -170,3 +170,7 @@ dist
 
 # IntelliJ based IDEs
 .idea
+
+# LOCAL files
+.todo.txt
+:
