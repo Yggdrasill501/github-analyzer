@@ -173,4 +173,5 @@ dist
 
 # LOCAL files
 .todo.txt
-:
+pyrightconfig.jpyrightconfig.jsonpyrightconfig.json
+.venv
