@@ -6,7 +6,7 @@ MODULE_LOGGER =  logging.getLogger(__name__)
 
 url = "https://github.com/Yggdrasill501/github-analyzer/blob/main/src/index.tsx"
 
-def read_acces_token(file = '.env'):
+def read_acces_token(file = '../.env'):
     """Read github acces token if need.
 
     :param str file: file with enviromental variables.
@@ -17,16 +17,15 @@ def read_acces_token(file = '.env'):
                 if line.strip() and not line.startswith('#'):
                     key, value = line.strip().split('=', 1)
                     os.environ[key] = value
+        return os.environ.get('ACCESS_TOKEN')
 
     except FileNotFoundError as error:
         MODULE_LOGGER.error(msg=f"Missing {file}, {error}")
 
 
-def count_lines_in_github_file(owner, repo, path, access_token):
-    """
-    """
-    if not access_token:
-        access_token = read_acces_token()
+def count_lines_in_github_file(url):
+    """."""
+    access_token = read_acces_token()
 
     headers = {
         "Authorization": f"token {access_token}",
@@ -36,14 +35,11 @@ def count_lines_in_github_file(owner, repo, path, access_token):
 
     if response.status_code == 200:
         content = response.text
-        lines = content.count('\n') + 1  # Counting new lines and adding one for the last line
-        return lines
+        lines = content.count('\n') + 1
+        return [lines, content]
     else:
         return f"Error: {response.status_code} - {response.reason}"
 
-# Example usage
-owner = "octocat"
-repo = "Hello-World"
-path = "path/to/file.txt"
-access_token = "YOUR_ACCESS_TOKEN"
-print(count_lines_in_github_file(owner, repo, path, access_token))
+if __name__ == '__main__':
+    lines = count_lines_in_github_file(url = url)
+    print(lines)
